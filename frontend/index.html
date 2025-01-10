@@ -23,20 +23,16 @@
     <h1>Welcome!</h1>
     <h3>Transform Your HandWritten Creations into Digital Masterpieces</h3>
   </div>
-  <!--<div class="container">
-    <img src="images/title-img.jpg" width="300px" class="home-img"/>
-  </div>
-  <br><br>-->
   <div class="container"> 
     <div class="converter-box">
         <h2>Free Image Converter</h2>
         <p>Convert your images with ease.</p>
 
         <div class="upload-area" id="drop-area">
-            <input type="file" id="file-input" accept="image/*" style="display: none;">
-            <p>Upload your image or drag and drop it here</p>
-            <img id="image-preview" src="" alt="Selected Image">
-        </div>
+          <input type="file" id="file-input" accept="image/*" style="display: none;">
+          <p>Upload your image or drag and drop it here</p>
+          <img id="image-preview" src="" alt="Selected Image">
+      </div>      
 
         <div class="radio-group">
             <label><input type="radio" name="conversion-type" value="artistic" checked> Artistic Converter</label>
@@ -45,9 +41,9 @@
 
         <button id="convert-btn">Convert</button>
         <br> <br>
-        <button id="convert-btn">Edit File</button>
+        <button id="edit-btn">Edit File</button>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <button id="convert-btn" onclick="pdfDown()" >Download File</button>
+        <button id="download-btn" onclick="pdfDown()" >Download File</button>
     </div>
 </div>
 <br><br>
