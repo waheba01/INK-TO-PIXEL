@@ -70,3 +70,8 @@ document.getElementById('convert-btn').addEventListener('click', () => {
     // Add your conversion logic here.
     alert("Conversion logic will be added here.");
 });
+function pdfDown() {
+    var doc = new jsPDF();
+    doc.addImage(newImage, "JPEG", 10, 10, 180, 150);
+    doc.save("ImageToPDF.pdf");
+  }
