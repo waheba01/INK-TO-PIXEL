@@ -5,8 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>File Converter</title>
 <link href="style.css" rel="stylesheet" >
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
+  <section id="processing-sec">
   <div class="navbar">
     <h1 class="logo">
       <img src="images/logo.jpg" class="nav-logo">
@@ -41,12 +43,47 @@
 
         <button id="convert-btn">Convert</button>
         <br> <br>
-        <button id="edit-btn">Edit File</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <button id="download-btn" onclick="pdfDown()" >Download File</button>
+        
     </div>
 </div>
+
+<!-- <div class="upload-area" id="drop-area">
+  <input type="file" id="file-input" accept="image/*" style="display: none;">
+  <p>Upload your image or drag and drop it here</p>
+  <img id="image-preview" src="" alt="Selected Image">
+</div>      
+
+<div class="radio-group">
+    <label><input type="radio" name="conversion-type" value="artistic" checked> Artistic Converter</label>
+    <label><input type="radio" name="conversion-type" value="geometric"> Geometric Converter</label>
+</div>
+
+<button id="convert-btn">Convert</button>
+<br> <br>
+
+</div> -->
+
 <br><br>
+</section>
+<section id="converted-sec">
+  <br><br>
+  <div class="container">  
+    <div class="converter-box">
+        <h2>Your Image is Ready!</h2>
+        <p>Easily edit or download your digital creation below. Make it your own with just a click!</p>
+
+        <div class="upload-area" id="drop-area">
+          <input type="file" id="file-input" accept="image/*" style="display: none;">
+          <p>Converted image</p>
+          <img id="image-preview" src="" alt="Selected Image">
+      </div>      
+
+        <button id="edit-btn">Edit File</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button onclick="downloadImage()" id="download-btn">Download File</button>
+    </div>
+</div>
+</section>
 <script src="script.js"></script>
 </body>
 </html>
