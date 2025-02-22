@@ -1,47 +1,110 @@
-// Add event listener to the Convert button
-document.getElementById('convert-btn').addEventListener('click', () => {
-    // Get the selected conversion type
-    const selectedType = document.querySelector('input[name="conversion-type"]:checked').value;
+// document.getElementById('convert-btn').addEventListener('click', async () => {
+//     const fileInput = document.getElementById('file-input');
+//     const file = fileInput.files[0];
 
-    // Get the image element from the processing section
-    const imageElement = document.getElementById("image-preview");
+//     if (!file) {
+//         alert("Please upload an image first!");
+//         return;
+//     }
 
-    // Check if an image is uploaded
-    if (!imageElement.src || imageElement.src === "") {
+//     let formData = new FormData();
+//     formData.append("image", file);
+
+//     try {
+//         let response = await fetch("http://127.0.0.1:5000/convert", {
+//             method: "POST",
+//             body: formData
+//         });
+
+//         if (!response.ok) {
+//             throw new Error("Failed to convert image");
+//         }
+
+//         let data = await response.json();
+//         document.getElementById("converted-image").src = data.converted_image;
+
+//     } catch (error) {
+//         console.error("Error:", error);
+//         alert("An error occurred. Please try again.");
+//     }
+// });
+
+document.getElementById("file-input").addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById("image-preview").src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// document.getElementById("convert-btn").addEventListener("click", function () {
+//     const fileInput = document.getElementById("file-input");
+//     if (fileInput.files.length === 0) {
+//         alert("Please select an image first.");
+//         return;
+//     }
+
+//     const formData = new FormData();
+//     formData.append("file", fileInput.files[0]);
+
+//     fetch("/upload", {
+//         method: "POST",
+//         body: formData
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         if (data.converted_image) {
+//             document.getElementById("converted-image").src = data.converted_image;
+//         } else {
+//             alert("Error: " + data.error);
+//         }
+//     })
+//     .catch(error => console.error("Error:", error));
+// });
+
+
+
+document.getElementById("convert-btn").addEventListener("click", async () => {
+    const fileInput = document.getElementById("file-input");
+    const file = fileInput.files[0];
+
+    if (!file) {
         alert("Please upload an image first!");
         return;
     }
 
-    // Apply conversion based on the selected type
-    if (selectedType === 'artistic') {
-        applyArtisticConversion(imageElement)
-            .then((processedImageSrc) => {
-                // Display the processed image in the converted section
-                const convertedImageElement = document.querySelector("#converted-sec #image-preview");
-                convertedImageElement.src = processedImageSrc;
-                convertedImageElement.style.display = "block"; // Ensure the image is visible
+    let formData = new FormData();
+    formData.append("image", file);
 
-                // Hide processing section and show converted section
-                document.getElementById('processing-sec').style.display = 'none';
-                document.getElementById('converted-sec').style.display = 'block';
+    try {
+        let response = await fetch("http://127.0.0.1:5000/convert", {
+            method: "POST",
+            body: formData
+        });
 
-                // Alert the user about the successful conversion
-                alert("Artistic conversion applied successfully!");
-            })
-            .catch((error) => {
-                alert("An error occurred during artistic conversion: " + error.message);
-            });
-    } else if (selectedType === 'geometric') {
-        alert("Geometric converter is not implemented yet."); // Placeholder for geometric conversion
-    } else {
-        alert("Invalid conversion type selected!");
+        if (!response.ok) {
+            throw new Error("Failed to convert image");
+        }
+
+        let data = await response.json();
+        let convertedImage = document.getElementById("converted-image");
+
+        // Set the source of the converted image
+        convertedImage.src = "http://127.0.0.1:5000" + data.converted_image;
+        
+        // Make the converted image section visible
+        document.getElementById("converted-sec").style.display = "block";
+
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Error processing image");
     }
 });
 
-// Ensure converted-sec is hidden initially
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('converted-sec').style.display = 'none';
-});
+
 
 // Artistic conversion logic
 function applyArtisticConversion(imageElement) {
