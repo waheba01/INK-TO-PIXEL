@@ -71,8 +71,7 @@
 
       
 
-        <button class="artistic-convert" id="artistic-btn"> Artistic Convert</button>
-
+        <button class="artistic-convert" id="artistic-btn">Artistic Convert</button>
         &nbsp;&nbsp;
 
         <button class="flowchart-convert" id= "flowchart-btn"> Flowchart Convert</button>
@@ -87,7 +86,8 @@
 
 
 
-<!-- <div class="upload-area" id="drop-area">
+<!-- <div class="upload-area" id="drop-area">git push origin main
+
 
   <input type="file" id="file-input" accept="image/*" style="display: none;">
 
@@ -143,26 +143,25 @@
 </section> -->
 
 
-
 <!-- Converted Image Section (Initially Hidden) -->
+
 <section id="converted-sec">
   <br><br>
-  <div class="container"  style="display: none;">
+  <div class="container" id="converted-container" style="display: none;">
       <div class="converter-box">
           <h2>Your Image is Ready!</h2>
           <p>Easily edit or download your digital creation below. Make it your own with just a click!</p>
-
           <div id="converted-image-container">
-              <img id="converted-image" src="" alt="Converted Image">
+            <img id="converted-image" src="http://127.0.0.1:5000/outputs/converted_img6.jpeg" alt="Converted Image" style="display: block; width: 500px; height: auto;">
           </div>
-
           <button id="edit-btn">Edit File</button>
           &nbsp;&nbsp;&nbsp;&nbsp;
+
+
           <button onclick="downloadImage()" id="download-btn">Download File</button>
       </div>
   </div>
 </section>
-
   
 
 <script src="script.js"></script>
